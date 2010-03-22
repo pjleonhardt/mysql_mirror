@@ -1,48 +1,7 @@
-# Use MysqlMirror to mirror data between databases. This can be useful when you want to update your
-# development or staging environments with real data to work with. Or, if you do some heavy lifting
-# calculations on another server, you might want to use a seperate database on another host, etc.
-# 
-#= General approach=
-# - Mirror Across Hosts: performs a mysql_dump to an sql file, then imports file to target host
-# - Mirror Same Host: uses CREATE TABLE ( SELECT ... ) style for mirroring. Much faster than mysql_dump
-#
-# Note:
-# ALL information will be lost in the tables mirrored to the Target Database
-# 
-# == Usage ==
-# Basic usage, copy production db to development
-#   @m = MysqlMirror.new({
-#     :source => :production,
-#     :target => :development
-#   })
-# 
-# Choose what tables you want to bring over and how you want to scope them...
-#   @m = MysqlMirror.new({
-#     :source => :production,
-#     :target => :development,
-#     :tables => [:users, :widgets],
-#     :where => {:users => "is_admin NOT NULL"},
-#   })
-# 
-# Database information not in your database.yml file? (Or Not Running Rails?) No Problem!
-#   @m = MysqlMirror.new({
-#     :source => { :database => "app_production", :user => ..., :password => ..., :hostname => ...},
-#     :target => {:database => "app_development", :hostname => 'localhost'}
-#   })
-# 
-# Want to use everything in :production environment (user, pass, host) but need to change the database?
-#   @m = MysqlMirror.new({
-#     :source => :production,
-#     :override => {:source => {:database => "heavy_calculations_database"}},
-#     :target => :production
-#   })
-# 
-# 
-# 
 require 'active_record'
 require 'fileutils'
 
-class MysqlMirror2
+class MysqlMirror
   class MysqlMirrorException < Exception; end
   
   class Source < ActiveRecord::Base
@@ -114,7 +73,7 @@ private
   #      => MysqlMirror::Source.establish_connection(@source_config).connection
   #
   def connect_to(which)
-    "MysqlMirror2::#{which.to_s.classify}".constantize.establish_connection(self.instance_variable_get("@#{which}_config")).connection
+    "MysqlMirror::#{which.to_s.classify}".constantize.establish_connection(self.instance_variable_get("@#{which}_config")).connection
   end
 
   def local_copy
