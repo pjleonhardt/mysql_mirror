@@ -1,26 +1,27 @@
+= Mysql Mirror 
 Use MysqlMirror to mirror data between databases. This can be useful when you want to update your
 development or staging environments with real data to work with. Or, if you do some heavy lifting
 calculations on another server, you might want to use a seperate database on another host, etc.
  
-= General Approach =
+=== General Approach
  - Mirror Across Hosts: performs a mysql_dump to an sql file, then imports file to target host
  - Mirror Same Host: uses CREATE TABLE ( SELECT ... ) style for mirroring. Much faster than mysql_dump
 
 Note:
 ALL information will be lost in the tables mirrored to the Target Database
 
-== Dependencies ==
- - Active Record
- - FileUtils
+== Dependencies
+- Active Record
+- FileUtils
 
-== Usage ==
+== Usage
 Basic usage, copy production db to development
     @m = MysqlMirror.new({
      :source => :production,
      :target => :development
    })
  
- Choose what tables you want to bring over and how you want to scope them...
+Choose what tables you want to bring over and how you want to scope them...
    @m = MysqlMirror.new({
      :source => :production,
      :target => :development,
@@ -28,13 +29,13 @@ Basic usage, copy production db to development
      :where => {:users => "is_admin NOT NULL"},
    })
  
- Database information not in your database.yml file? (Or Not Running Rails?) No Problem!
+Database information not in your database.yml file? (Or Not Running Rails?) No Problem!
    @m = MysqlMirror.new({
      :source => { :database => "app_production", :user => ..., :password => ..., :hostname => ...},
      :target => {:database => "app_development", :hostname => 'localhost'}
    })
  
- Want to use everything in :production environment (user, pass, host) but need to change the database?
+Want to use everything in :production environment (user, pass, host) but need to change the database?
    @m = MysqlMirror.new({
      :source => :production,
      :override => {:source => {:database => "heavy_calculations_database"}},
