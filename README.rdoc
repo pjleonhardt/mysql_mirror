@@ -4,8 +4,8 @@ development or staging environments with real data to work with. Or, if you do s
 calculations on another server, you might want to use a seperate database on another host, etc.
  
 === General Approach
- - Mirror Across Hosts: performs a mysql_dump to an sql file, then imports file to target host
- - Mirror Same Host: uses CREATE TABLE ( SELECT ... ) style for mirroring. Much faster than mysql_dump
+- Mirror Across Hosts: performs a mysql_dump to an sql file, then imports file to target host
+- Mirror Same Host: uses CREATE TABLE ( SELECT ... ) style for mirroring. Much faster than mysql_dump
 
 Note:
 ALL information will be lost in the tables mirrored to the Target Database
