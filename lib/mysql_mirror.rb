@@ -67,6 +67,9 @@ class MysqlMirror
     end
   end
   
+  def to_s
+    "Mirroring #{self.tables.join(', ')} from #{@source_config[:host]}.#{@source_config[:database]} to #{@target_config[:host]}.#{@target_config[:database]}"
+  end
   
 private
   #   e.g, connect_to(:source)
@@ -113,7 +116,8 @@ private
   def remote_mysqldump
     @tmp_file_name = "mysql_mirror_#{@start_time.to_i}.sql"
     tables = get_tables.map(&:to_s).join(" ")
-    where  = self.where.blank? ? "" : "--where\"#{@source_config[:where]}\""
+    where_statement = self.where.values.first
+    where = self.where.blank? ? "" : "--where=\"#{where_statement}\""
     config = "-u#{@source_config[:username]} -p'#{@source_config[:password]}' -h #{@source_config[:host]} #{@source_config[:database]}"
     
     the_cmd = "#{mysqldump_command_prefix} #{where} #{config} #{tables} > #{@tmp_file_name}"
