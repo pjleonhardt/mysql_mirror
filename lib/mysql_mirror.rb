@@ -116,8 +116,14 @@ private
   def remote_mysqldump
     @tmp_file_name = "mysql_mirror_#{@start_time.to_i}.sql"
     tables = get_tables.map(&:to_s).join(" ")
-    where_statement = self.where.values.first
-    where = self.where.blank? ? "" : "--where=\"#{where_statement}\""
+    
+    if self.where.blank?
+      where = ""
+    else
+      where_statement = self.where.values.first
+      where = "--where=\"#{where_statement}\""
+    end
+
     config = "-u#{@source_config[:username]} -p'#{@source_config[:password]}' -h #{@source_config[:host]} #{@source_config[:database]}"
     
     the_cmd = "#{mysqldump_command_prefix} #{where} #{config} #{tables} > #{@tmp_file_name}"
