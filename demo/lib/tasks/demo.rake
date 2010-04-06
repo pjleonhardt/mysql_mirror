@@ -26,17 +26,14 @@ EOS
 
 	desc "Setup the demo"
 	task :setup => ["demo:instructions", "environment", "db:create","db:migrate","db:fixtures:load"] do
-    puts "mkay, you should be able do rake demo:run now"
+    puts "mkay, you're good on RAILS_ENV=#{RAILS_ENV}, do it again for the other ones"
 	end
+	
 	desc "Run the demo"
 	task :run => ['environment'] do
 		require '../lib/mysql_mirror'
     puts 'MySqlMirror Demo'
-    # Basic usage, copy production db to development
-    #     @m = MysqlMirror.new({
-    #      :source => :production,
-    #      :target => :development
-    #    })
+    # TODO: Move these other guys in...
     # 
     # Choose what tables you want to bring over and how you want to scope them...
     #    @m = MysqlMirror.new({
@@ -70,6 +67,8 @@ EOS
     @demos.each do |demo|
       demo.code.call(binding)
       puts @m.inspect
+      puts "CALLING"
+      @m.execute!
     end
 	end
 end

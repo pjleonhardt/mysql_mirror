@@ -2,14 +2,14 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql
-  database: mm_demo_local_source
+  database: mm_demo_development
   username: root
   password:
   socket: /tmp/mysql.sock  
 
 production:
   adapter: mysql
-  database: mm_demo_local_source
+  database: mm_demo_production
   username: root
   password:
   socket: /tmp/mysql.sock
