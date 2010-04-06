@@ -16,7 +16,32 @@ ALL information will be lost in the tables mirrored to the Target Database
 - FileUtils
 
 == Usage
-Run `rake demo` to a bunch of different invocations of the tool
+Basic usage, copy production db to development
+    @m = MysqlMirror.new({
+     :source => :production,
+     :target => :development
+   })
+ 
+Choose what tables you want to bring over and how you want to scope them...
+   @m = MysqlMirror.new({
+     :source => :production,
+     :target => :development,
+     :tables => [:users, :widgets],
+     :where => {:users => "is_admin NOT NULL"},
+   })
+ 
+Database information not in your database.yml file? (Or Not Running Rails?) No Problem!
+   @m = MysqlMirror.new({
+     :source => { :database => "app_production", :user => ..., :password => ..., :hostname => ...},
+     :target => {:database => "app_development", :hostname => 'localhost'}
+   })
+ 
+Want to use everything in :production environment (user, pass, host) but need to change the database?
+   @m = MysqlMirror.new({
+     :source => :production,
+     :override => {:source => {:database => "heavy_calculations_database"}},
+     :target => :production
+   })
 
 == Advanced Usage
 Transfer Method

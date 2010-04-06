@@ -12,7 +12,7 @@ class MysqlMirror
   class Target < ActiveRecord::Base
   end
   
-  attr_accessor :tables, :where
+  attr_accessor :tables, :where, :strategy
   
   def initialize(options = {})
     unless ([:source, :target] - options.keys).blank?
@@ -39,6 +39,7 @@ class MysqlMirror
     else
       @commands = commands_for_remote_mirror
     end
+    debugger
   end
   
   def commands_for_local_mirror
@@ -193,7 +194,9 @@ private
     if(env_or_hash.is_a? Symbol)
       config = ActiveRecord::Base.configurations[env_or_hash.to_s]
     end
-    raise InvalidConfiguration.new("Specified configuration, #{env_or_hash.inspect}, does not exist.")
+    if config.blank?
+      raise InvalidConfiguration.new("Specified configuration, #{env_or_hash.inspect}, does not exist.")
+    end
     config.symbolize_keys
   end
   
