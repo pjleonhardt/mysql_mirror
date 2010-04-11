@@ -1,4 +1,0 @@
-<% 1000.times do |t| %>
-r<%= t%>:
-  name: r<%= t%>--<%= rand.to_s %>
-<% end %>

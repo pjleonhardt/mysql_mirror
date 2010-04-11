@@ -1,139 +1,17 @@
-# Logfile created on Mon Apr 05 21:59:23 -0500 2010  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_local_source.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.0ms)[0m   [0;1mMysql::Error: Not unique table/alias: 'schema_migrations': CREATE TABLE IF NOT EXISTS mm_demo_local_source.schema_migrations LIKE mm_demo_local_source.schema_migrations[0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_local_source.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.0ms)[0m   [0;1mMysql::Error: Not unique table/alias: 'schema_migrations': CREATE TABLE IF NOT EXISTS mm_demo_local_source.schema_migrations LIKE mm_demo_local_source.schema_migrations[0m
-  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `mm_demo_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
   [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (73.2ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
-  [4;35;1mSQL (212.8ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (205.3ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (141.6ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
   [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
 Migrating to CreateT1s (20100406015530)
-  [4;36;1mSQL (93.6ms)[0m   [0;1mCREATE TABLE `t1s` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (117.3ms)[0m   [0;1mCREATE TABLE `t1s` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
   [4;35;1mSQL (0.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100406015530')[0m
   [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
   [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
   [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
   [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `t1s`[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `t1s`[0m
-  [4;35;1mSQL (1.9ms)[0m   [0mSHOW KEYS FROM `t1s`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `t1s`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW KEYS FROM `t1s`[0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-Migrating to CreateT1s (20100406015530)
-  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `t1s`[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `t1s`[0m
-  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `t1s`[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-Migrating to CreateT1s (20100406015530)
-  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `t1s`[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `t1s`[0m
-  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `t1s`[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-Migrating to CreateT1s (20100406015530)
-  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `t1s`[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `t1s`[0m
-  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `t1s`[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.schema_migrations LIKE mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (64.0ms)[0m   [0mCREATE TABLE mm_demo_development.schema_migrations_MirrorTmp LIKE mm_demo_production.schema_migrations[0m
-  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO mm_demo_development.schema_migrations_MirrorTmp SELECT * FROM mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (1.7ms)[0m   [0mRENAME TABLE mm_demo_development.schema_migrations TO mm_demo_development.schema_migrations_OldMarkedToDelete, mm_demo_development.schema_migrations_MirrorTmp TO mm_demo_development.schema_migrations[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_OldMarkedToDelete[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.t1s_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.t1s LIKE mm_demo_production.t1s[0m
-  [4;35;1mSQL (220.4ms)[0m   [0mCREATE TABLE mm_demo_development.t1s_MirrorTmp LIKE mm_demo_production.t1s[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO mm_demo_development.t1s_MirrorTmp SELECT * FROM mm_demo_production.t1s[0m
-  [4;35;1mSQL (2.1ms)[0m   [0mRENAME TABLE mm_demo_development.t1s TO mm_demo_development.t1s_OldMarkedToDelete, mm_demo_development.t1s_MirrorTmp TO mm_demo_development.t1s[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.t1s_OldMarkedToDelete[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-Migrating to CreateT1s (20100406015530)
-  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `t1s`[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `t1s`[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `t1s`[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.schema_migrations LIKE mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (77.3ms)[0m   [0mCREATE TABLE mm_demo_development.schema_migrations_MirrorTmp LIKE mm_demo_production.schema_migrations[0m
-  [4;36;1mSQL (21.2ms)[0m   [0;1mINSERT INTO mm_demo_development.schema_migrations_MirrorTmp SELECT * FROM mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (1.7ms)[0m   [0mRENAME TABLE mm_demo_development.schema_migrations TO mm_demo_development.schema_migrations_OldMarkedToDelete, mm_demo_development.schema_migrations_MirrorTmp TO mm_demo_development.schema_migrations[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_OldMarkedToDelete[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.t1s_MirrorTmp[0m
-  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.t1s LIKE mm_demo_production.t1s[0m
-  [4;35;1mSQL (128.8ms)[0m   [0mCREATE TABLE mm_demo_development.t1s_MirrorTmp LIKE mm_demo_production.t1s[0m
-  [4;36;1mSQL (0.4ms)[0m   [0;1mINSERT INTO mm_demo_development.t1s_MirrorTmp SELECT * FROM mm_demo_production.t1s[0m
-  [4;35;1mSQL (1.3ms)[0m   [0mRENAME TABLE mm_demo_development.t1s TO mm_demo_development.t1s_OldMarkedToDelete, mm_demo_development.t1s_MirrorTmp TO mm_demo_development.t1s[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.t1s_OldMarkedToDelete[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.schema_migrations LIKE mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (88.2ms)[0m   [0mCREATE TABLE mm_demo_development.schema_migrations_MirrorTmp LIKE mm_demo_production.schema_migrations[0m
-  [4;36;1mSQL (21.2ms)[0m   [0;1mINSERT INTO mm_demo_development.schema_migrations_MirrorTmp SELECT * FROM mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mRENAME TABLE mm_demo_development.schema_migrations TO mm_demo_development.schema_migrations_OldMarkedToDelete, mm_demo_development.schema_migrations_MirrorTmp TO mm_demo_development.schema_migrations[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_OldMarkedToDelete[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.t1s_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.t1s LIKE mm_demo_production.t1s[0m
-  [4;35;1mSQL (234.6ms)[0m   [0mCREATE TABLE mm_demo_development.t1s_MirrorTmp LIKE mm_demo_production.t1s[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO mm_demo_development.t1s_MirrorTmp SELECT * FROM mm_demo_production.t1s[0m
-  [4;35;1mSQL (1.3ms)[0m   [0mRENAME TABLE mm_demo_development.t1s TO mm_demo_development.t1s_OldMarkedToDelete, mm_demo_development.t1s_MirrorTmp TO mm_demo_development.t1s[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.t1s_OldMarkedToDelete[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-Migrating to CreateT1s (20100406015530)
-  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `t1s`[0m
-  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `t1s`[0m
-  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `t1s`[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.schema_migrations LIKE mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (55.2ms)[0m   [0mCREATE TABLE mm_demo_development.schema_migrations_MirrorTmp LIKE mm_demo_production.schema_migrations[0m
-  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO mm_demo_development.schema_migrations_MirrorTmp SELECT * FROM mm_demo_production.schema_migrations[0m
-  [4;35;1mSQL (1.4ms)[0m   [0mRENAME TABLE mm_demo_development.schema_migrations TO mm_demo_development.schema_migrations_OldMarkedToDelete, mm_demo_development.schema_migrations_MirrorTmp TO mm_demo_development.schema_migrations[0m
-  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.schema_migrations_OldMarkedToDelete[0m
-  [4;35;1mSQL (0.1ms)[0m   [0mDROP TABLE IF EXISTS mm_demo_development.t1s_MirrorTmp[0m
-  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE IF NOT EXISTS mm_demo_development.t1s LIKE mm_demo_production.t1s[0m
-  [4;35;1mSQL (107.8ms)[0m   [0mCREATE TABLE mm_demo_development.t1s_MirrorTmp LIKE mm_demo_production.t1s[0m
-  [4;36;1mSQL (14.2ms)[0m   [0;1mINSERT INTO mm_demo_development.t1s_MirrorTmp SELECT * FROM mm_demo_production.t1s[0m
-  [4;35;1mSQL (1.4ms)[0m   [0mRENAME TABLE mm_demo_development.t1s TO mm_demo_development.t1s_OldMarkedToDelete, mm_demo_development.t1s_MirrorTmp TO mm_demo_development.t1s[0m
-  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE IF EXISTS mm_demo_development.t1s_OldMarkedToDelete[0m

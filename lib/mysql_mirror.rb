@@ -1,37 +1,24 @@
 require 'active_record'
 require 'fileutils'
-require 'yaml'
+
 class MysqlMirror
   class MysqlMirrorException < Exception; end
   class InvalidStrategy < Exception; end
   class InvalidConfiguration < Exception; end
   
-  VALID_STRATEGIES = [:replace_existing, :bomb_and_rebuild, :atomic_rename]
-    
   class Source < ActiveRecord::Base
   end
   
   class Target < ActiveRecord::Base
   end
   
-  attr_accessor :tables, :where, :strategy, :config_file_path
+  attr_accessor :tables, :where, :strategy
   
-  attr_reader :config # For MysqlMirror behavior defaults
   def initialize(options = {})
-    # Need to specify a Source and Target database
     unless ([:source, :target] - options.keys).blank?
+      # Need to specify a Source and Target database
       raise MysqlMirrorException.new("You must specify both Source and Target connections")
     end
-    
-    # Optional, a path to a YAML file that configures the tool
-    if options[:config_file_path]
-      self.config_file_path = 'TODO'
-    elsif File.exists?("./mysql_mirror.yml")
-      self.config_file_path = 'TODO'
-    else
-      self.config_file_path = "#{File.dirname(__FILE__)}/mysql_mirror.yml"
-    end
-    extract_config
     
     self.tables = options.delete(:tables)
     self.where  = options.delete(:where)
@@ -46,35 +33,13 @@ class MysqlMirror
     @source_config.merge!(source_override)
     @target_config.merge!(target_override)    
     
-    
     # @commands is an array of methods to call
     if mirroring_same_host?
       @commands = commands_for_local_mirror
     else
       @commands = commands_for_remote_mirror
     end
-  end
-  
-  
-  # yanks stuff from the mysql mirror config file
-  def extract_config
-    begin
-      @config = YAML.load(File.read(self.config_file_path))      
-    rescue Exception => e
-      puts "Your YAML is totally wacked out, YAML.load couldnt do its thang on #{self.config_file_path}"
-      raise e
-    end
-    
-    unless @config.kind_of? Hash
-      raise InvalidMysqlMirrorConfigFormat.new("Bunk format in in #{self.config_file_path}, not a hash")
-    end
-    @config.symbolize_keys!
-    
-    if VALID_STRATEGIES.map(&:to_s).include?(@config[:strategy])
-      self.strategy = @config[:strategy].to_sym
-    else
-      InvalidStrategy.new("Invalid mirror strategy")
-    end    
+    debugger
   end
   
   def commands_for_local_mirror
@@ -83,22 +48,19 @@ class MysqlMirror
     when :bomb_and_rebuild
     when :replace_existing
       [:local_copy]
+    else
+      raise InvalidStrategy.new("Invalid mirror strategy")
     end
   end
   
   def commands_for_remote_mirror
-    case self.strategy
-    when :atomic_rename
-    when :bomb_and_rebuild
-    when :replace_existing
-      [ 
-        :remote_mysqldump,
-        :remote_tmp_file_table_rename,
-        :remote_insert_command,
-        :remote_rename_tmp_tables,
-        :remote_remove_tmp_file 
-      ]
-    end
+    [ 
+      :remote_mysqldump,
+      :remote_tmp_file_table_rename,
+      :remote_insert_command,
+      :remote_rename_tmp_tables,
+      :remote_remove_tmp_file 
+    ]
   end
   
   def mirroring_same_host?
@@ -224,6 +186,7 @@ private
   def get_tables
     the_tables = self.tables.blank? ? @source.select_values("SHOW TABLES").map!(&:to_sym) : self.tables
   end
+
 
   def get_configuration(env_or_hash)
     config = env_or_hash
