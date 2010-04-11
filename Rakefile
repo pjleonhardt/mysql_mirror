@@ -18,3 +18,50 @@ rescue LoadError
 end
 
 Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }
+
+
+desc 'Run the demo/test cases'
+task :demo do
+  require 'lib/mysql_mirror'
+  puts 'MySqlMirror Demo'
+  # Basic usage, copy production db to development
+  #     @m = MysqlMirror.new({
+  #      :source => :production,
+  #      :target => :development
+  #    })
+  # 
+  # Choose what tables you want to bring over and how you want to scope them...
+  #    @m = MysqlMirror.new({
+  #      :source => :production,
+  #      :target => :development,
+  #      :tables => [:users, :widgets],
+  #      :where => {:users => "is_admin NOT NULL"},
+  #    })
+  # 
+  # Database information not in your database.yml file? (Or Not Running Rails?) No Problem!
+  #    @m = MysqlMirror.new({
+  #      :source => { :database => "app_production", :user => ..., :password => ..., :hostname => ...},
+  #      :target => {:database => "app_development", :hostname => 'localhost'}
+  #    })
+  # 
+  # Want to use everything in :production environment (user, pass, host) but need to change the database?
+  #    @m = MysqlMirror.new({
+  #      :source => :production,
+  #      :override => {:source => {:database => "heavy_calculations_database"}},
+  #      :target => :production
+  #    })
+  require 'ostruct'
+  @demos = []
+  @demos << OpenStruct.new(:name => "Basic usage, copy production db to development",
+                           :code => Proc.new {
+                            @m = MysqlMirror.new({
+                              :source => :production,
+                              :target => :development
+                            })
+                          })
+  @demos.each do |demo|
+    demo.code.call(binding)
+    puts @m.inspect
+  end
+    
+end
