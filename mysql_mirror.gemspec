@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Leonhardt", "Joe Goggins"]
-  s.date = %q{2010-04-05}
+  s.date = %q{2010-03-31}
   s.description = %q{Will mirror tables / databases between mysql databases and across hosts}
   s.email = %q{peterleonhardt@gmail.com}
   s.extra_rdoc_files = [

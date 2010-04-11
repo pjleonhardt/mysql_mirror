@@ -3,8 +3,6 @@ require 'fileutils'
 
 class MysqlMirror
   class MysqlMirrorException < Exception; end
-  class InvalidStrategy < Exception; end
-  class InvalidConfiguration < Exception; end
   
   class Source < ActiveRecord::Base
   end
@@ -42,14 +40,7 @@ class MysqlMirror
   end
   
   def commands_for_local_mirror
-    case self.strategy
-    when :atomic_rename
-    when :bomb_and_rebuild
-    when :replace_existing
-      [:local_copy]
-    else
-      raise InvalidStrategy.new("Invalid mirror strategy")
-    end
+    [:local_copy]
   end
   
   def commands_for_remote_mirror
@@ -193,7 +184,7 @@ private
     if(env_or_hash.is_a? Symbol)
       config = ActiveRecord::Base.configurations[env_or_hash.to_s]
     end
-    raise InvalidConfiguration.new("Specified configuration, #{env_or_hash.inspect}, does not exist.")
+    
     config.symbolize_keys
   end
   
