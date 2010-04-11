@@ -3,7 +3,6 @@ Use MysqlMirror to mirror data between databases. This can be useful when you wa
 development or staging environments with real data to work with. Or, if you do some heavy lifting
 calculations on another server, you might want to use a seperate database on another host, etc.
  
-
 === General Approach
 - Mirror Across Hosts: performs a mysql_dump to an sql file, then imports file to target host
 - Mirror Same Host: uses CREATE TABLE ( SELECT ... ) style for mirroring. Much faster than mysql_dump
