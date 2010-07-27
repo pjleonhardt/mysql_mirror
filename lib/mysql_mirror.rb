@@ -10,7 +10,7 @@ class MysqlMirror
   class Target < ActiveRecord::Base
   end
   
-  attr_accessor :tables, :where
+  attr_accessor :tables, :where, :mysqldump_options
   
   def initialize(options = {})
     unless ([:source, :target] - options.keys).blank?
@@ -25,6 +25,16 @@ class MysqlMirror
     source_override = overrides.delete(:source) || {}
     target_override = overrides.delete(:target) || {}
     
+    # set default mysqldump options
+    self.mysqldump_options = {
+      "compact" => "TRUE",
+      "max_allowed_packet" => 100553296,
+      "extended-insert" => "TRUE",
+      "lock-tables" => "FALSE",
+      "add-locks" => "FALSE",
+      "add-drop-table" => "FALSE"      
+    }
+        
     @source_config = get_configuration(options.delete(:source))
     @target_config = get_configuration(options.delete(:target))
     
@@ -83,10 +93,10 @@ private
     get_tables.each do |table|
       target_db = @target_config[:database]
       source_db = @source_config[:database]
-      target_table     = "#{target_db}.#{table}"
-      target_tmp_table = "#{target_db}.#{table}_MirrorTmp"
-      target_old_table = "#{target_db}.#{table}_OldMarkedToDelete"
-      source_table     = "#{source_db}.#{table}"
+      target_table     = "`#{target_db}`.`#{table}`"
+      target_tmp_table = "`#{target_db}`.`#{table}_MirrorTmp`"
+      target_old_table = "`#{target_db}`.`#{table}_OldMarkedToDelete`"
+      source_table     = "`#{source_db}`.`#{table}`"
       
       
       prime_statement_1  = "DROP TABLE IF EXISTS #{target_tmp_table}"
@@ -110,7 +120,7 @@ private
   end
   
   def mysqldump_command_prefix
-    "mysqldump --compact=TRUE --max_allowed_packet=100663296 --extended-insert=TRUE --lock-tables=FALSE --add-locks=FALSE --add-drop-table=FALSE"
+    "mysqldump " << self.mysqldump_options.map {|x| "--#{x[0]}=#{x[1]}" }.join(" ")
   end
   
   def remote_mysqldump
